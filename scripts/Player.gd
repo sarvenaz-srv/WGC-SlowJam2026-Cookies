@@ -3,7 +3,7 @@ extends CharacterBody2D
 ## hook that lets you swing/pull yourself up the tower.
 
 const SPEED := 160.0
-const JUMP_VELOCITY := -320.0
+const JUMP_VELOCITY := -400.0
 const GRAVITY := 980.0
 const GRAPPLE_MAX_DIST := 260.0
 const GRAPPLE_PULL_SPEED := 420.0

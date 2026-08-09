@@ -33,7 +33,7 @@ func _build_tower() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.seed = 12345
 
-	var y := 300.0
+	var y := 320.0
 	var x := 320.0
 	var row := 0
 	while y > -2600.0:
