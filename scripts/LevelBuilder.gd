@@ -3,11 +3,13 @@ extends Node2D
 ## are immediately playable without hand-placing every block.
 
 const ColorBlockScene := preload("res://scenes/ColorBlock.tscn")
+const BileScene := preload("res://scenes/Bile.tscn")
 const BLOCK_SIZE := 32
 
 func _ready() -> void:
 	_build_ground()
 	_build_tower()
+	_build_bile()
 
 func _build_ground() -> void:
 	var ground := StaticBody2D.new()
@@ -23,6 +25,11 @@ func _build_ground() -> void:
 	ground.add_child(visual)
 	ground.position = Vector2(320, 340)
 	add_child(ground)
+
+func _build_bile() -> void:
+	var bile := BileScene.instantiate()
+	bile.position = Vector2(320, 400)
+	add_child(bile)
 
 func _build_tower() -> void:
 	# A hand-tuned ascending pattern: each row picks one active phase you

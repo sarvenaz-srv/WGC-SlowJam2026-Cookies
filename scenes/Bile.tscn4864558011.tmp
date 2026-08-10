@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b0eilhctvp3lb"]
+
+[ext_resource type="Script" uid="uid://day0irjv2gx00" path="res://scenes/Bile.gd" id="1_2hls0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u2nuq"]
+size = Vector2(640, 80)
+
+[node name="Bile" type="Node2D" unique_id=395841072]
+script = ExtResource("1_2hls0")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=841088426]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=820298534]
+shape = SubResource("RectangleShape2D_u2nuq")

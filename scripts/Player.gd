@@ -1,6 +1,7 @@
 extends CharacterBody2D
 ## Core Velgress-style player: run, jump, cycle colors, and fire a grapple
 ## hook that lets you swing/pull yourself up the tower.
+class_name Player
 
 const SPEED := 160.0
 const JUMP_VELOCITY := -400.0
