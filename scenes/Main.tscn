@@ -1,18 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxmain001"]
+[gd_scene format=3 uid="uid://bxmain001"]
 
-[ext_resource type="Script" path="res://scripts/LevelBuilder.gd" id="1"]
+[ext_resource type="Script" uid="uid://wu8lbin0hc5" path="res://scripts/LevelBuilder.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bxplayer001" path="res://scenes/Player.tscn" id="2"]
-[ext_resource type="Script" path="res://scripts/Hud.gd" id="3"]
+[ext_resource type="Script" uid="uid://gjwqvlk3jwsb" path="res://scripts/Hud.gd" id="3"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=35321925]
 script = ExtResource("1")
 
-[node name="Player" parent="." instance=ExtResource("2")]
+[node name="Player" parent="." unique_id=2061084979 instance=ExtResource("2")]
 position = Vector2(320, 300)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2074770011]
 
-[node name="Hud" type="Label" parent="CanvasLayer"]
+[node name="Hud" type="Label" parent="CanvasLayer" unique_id=796458715]
 offset_left = 12.0
 offset_top = 8.0
 offset_right = 400.0
@@ -21,4 +21,4 @@ theme_override_font_sizes/font_size = 14
 text = "A/D move, W/Space jump, X cycle color, Click+hold grapple"
 script = ExtResource("3")
 
-[node name="ClearColor" type="Node" parent="."]
+[node name="ClearColor" type="Node" parent="." unique_id=1931915982]
