@@ -14,6 +14,7 @@ var grappling := false
 var grapple_point: Vector2 = Vector2.ZERO
 
 @onready var line: Line2D = $GrappleLine
+@onready var sprite = $Sprite2D
 
 func _ready() -> void:
 	line.clear_points()
@@ -28,6 +29,10 @@ func _physics_process(delta: float) -> void:
 
 		var direction := Input.get_axis("move_left", "move_right")
 		if direction != 0:
+			if direction < 0:
+				sprite.flip_h = true
+			else:
+				sprite.flip_h = false
 			velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)

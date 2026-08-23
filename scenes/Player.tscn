@@ -1,22 +1,10 @@
 [gd_scene format=3 uid="uid://bxplayer001"]
 
 [ext_resource type="Script" uid="uid://bg7wtc81e5xjm" path="res://scripts/Player.gd" id="1"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1"]
-size = Vector2(16, 24)
+[ext_resource type="Texture2D" uid="uid://mid0f1nqamd1" path="res://assets/solo- biome 1 lixinho right.png" id="2_v6fml"]
 
 [node name="Player" type="CharacterBody2D" unique_id=493941434]
 script = ExtResource("1")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1435855010]
-shape = SubResource("RectangleShape2D_1")
-
-[node name="Sprite" type="ColorRect" parent="." unique_id=1210006478]
-offset_left = -8.0
-offset_top = -12.0
-offset_right = 8.0
-offset_bottom = 12.0
-color = Color(0.95, 0.95, 0.85, 1)
 
 [node name="GrappleLine" type="Line2D" parent="." unique_id=765451302]
 width = 2.0
@@ -26,3 +14,11 @@ default_color = Color(0.9, 0.9, 0.9, 0.9)
 zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1656613350]
+position = Vector2(2, -2)
+polygon = PackedVector2Array(10, -19, -2, -11, -5, -6, -16, -1, -14, 10, -13, 17, -1, 18, 8, 5, 12, -3)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=292669339]
+position = Vector2(2, -2)
+texture = ExtResource("2_v6fml")
