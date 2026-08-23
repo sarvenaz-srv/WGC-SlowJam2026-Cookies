@@ -2,13 +2,23 @@
 
 [ext_resource type="Script" uid="uid://wu8lbin0hc5" path="res://scripts/LevelBuilder.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bxplayer001" path="res://scenes/Player.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://cap0gs8v6s4fs" path="res://assets/solo- biome 1 background back.png" id="2_lhr70"]
 [ext_resource type="Script" uid="uid://gjwqvlk3jwsb" path="res://scripts/Hud.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://r45v6bt5rfva" path="res://assets/solo- biome 2 background back.png" id="3_nfivy"]
+[ext_resource type="Texture2D" uid="uid://hx3c58nqlpyu" path="res://assets/solo- biome 3 background back.png" id="4_1nqs0"]
 [ext_resource type="Texture2D" uid="uid://dc1ovmwu7ffws" path="res://assets/biome 1 redux.png" id="4_q8u5g"]
+[ext_resource type="Texture2D" uid="uid://ceniaeg6chdm0" path="res://assets/solo- biome 4 background back.png" id="5_1iba3"]
 [ext_resource type="Texture2D" uid="uid://dtj6won8yu8l8" path="res://assets/biome 2 redux.png" id="5_lhr70"]
 [ext_resource type="Texture2D" uid="uid://depi2bfsyx16" path="res://assets/biome 3.png" id="6_wp0k4"]
+[ext_resource type="Texture2D" uid="uid://ctd7ryfa3vre2" path="res://assets/solo- biome 5 background back.png" id="6_yxlcp"]
 [ext_resource type="Texture2D" uid="uid://dakp3crkp3px3" path="res://assets/biome 4.png" id="7_bjd11"]
+[ext_resource type="Texture2D" uid="uid://d0auprncm1ufy" path="res://assets/solo- biome 1 background walls.png" id="7_ebg2g"]
+[ext_resource type="Texture2D" uid="uid://caqopn5rw6p1n" path="res://assets/solo- biome 2 background walls.png" id="8_2ofn6"]
 [ext_resource type="Texture2D" uid="uid://cw1b8uvynagb2" path="res://assets/biome 5 sensing blocks.png" id="8_qmy6f"]
 [ext_resource type="Texture2D" uid="uid://dxefjls6jgpan" path="res://assets/biome 5.png" id="9_mwfav"]
+[ext_resource type="Texture2D" uid="uid://cmdd60oybmq1w" path="res://assets/solo- biome 3 background walls.png" id="9_xa025"]
+[ext_resource type="Texture2D" uid="uid://bm664khtu74t6" path="res://assets/solo- biome 4 background walls.png" id="10_36rkl"]
+[ext_resource type="Texture2D" uid="uid://bwpl731rvum1x" path="res://assets/solo- biome 5 background walls.png" id="11_fs0b5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q8u5g"]
 texture = ExtResource("4_q8u5g")
@@ -234,6 +244,58 @@ sources/5 = SubResource("TileSetAtlasSource_mwfav")
 [node name="Main" type="Node2D" unique_id=35321925]
 script = ExtResource("1")
 
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=533952752]
+
+[node name="Biome1BG" type="Sprite2D" parent="Parallax2D" unique_id=1569580428]
+position = Vector2(340, 159)
+scale = Vector2(2.6226711, 2.474291)
+texture = ExtResource("2_lhr70")
+
+[node name="Biome2BG" type="Sprite2D" parent="Parallax2D" unique_id=638223081]
+position = Vector2(363.00003, -160)
+scale = Vector2(2.604037, 2.5664892)
+texture = ExtResource("3_nfivy")
+
+[node name="Biome3BG" type="Sprite2D" parent="Parallax2D" unique_id=1437161763]
+position = Vector2(357, -507.00003)
+scale = Vector2(2.60559, 2.7801418)
+texture = ExtResource("4_1nqs0")
+
+[node name="Biome4BG" type="Sprite2D" parent="Parallax2D" unique_id=958309156]
+position = Vector2(345.5, -864.25)
+scale = Vector2(2.6118014, 2.8900707)
+texture = ExtResource("5_1iba3")
+
+[node name="Biome5BG" type="Sprite2D" parent="Parallax2D" unique_id=130899087]
+position = Vector2(369, -1214)
+scale = Vector2(2.6024842, 2.6932623)
+texture = ExtResource("6_yxlcp")
+
+[node name="Biome1Walls" type="Sprite2D" parent="Parallax2D" unique_id=1140641050]
+position = Vector2(323.75003, 165.99998)
+scale = Vector2(2.0574534, 2.5673757)
+texture = ExtResource("7_ebg2g")
+
+[node name="Biome2Walls" type="Sprite2D" parent="Parallax2D" unique_id=762269171]
+position = Vector2(327.74997, -162.99998)
+scale = Vector2(2.0636647, 2.5106385)
+texture = ExtResource("8_2ofn6")
+
+[node name="Biome3Walls" type="Sprite2D" parent="Parallax2D" unique_id=95385006]
+position = Vector2(342.75006, -495.06253)
+scale = Vector2(2.14441, 2.8501773)
+texture = ExtResource("9_xa025")
+
+[node name="Biome4Walls" type="Sprite2D" parent="Parallax2D" unique_id=34606992]
+position = Vector2(339.24997, -857.875)
+scale = Vector2(2.166149, 2.8670213)
+texture = ExtResource("10_36rkl")
+
+[node name="Biome5Walls" type="Sprite2D" parent="Parallax2D" unique_id=1095086634]
+position = Vector2(324, -1228)
+scale = Vector2(2.1288822, 2.8421988)
+texture = ExtResource("11_fs0b5")
+
 [node name="Player" parent="." unique_id=2061084979 instance=ExtResource("2")]
 position = Vector2(320, 300)
 
@@ -247,8 +309,6 @@ offset_bottom = 60.0
 theme_override_font_sizes/font_size = 14
 text = "A/D move, W/Space jump, X cycle color, Click+hold grapple"
 script = ExtResource("3")
-
-[node name="ClearColor" type="Node" parent="." unique_id=1931915982]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=757867740]
 tile_map_data = PackedByteArray("AAAHABQAAAADAAQAAAAIABQAAAADAAQAAAAJABQAAAADAAQAAAAMABQAAAADAAQAAAANABQAAAADAAQAAAAOABQAAAADAAQAAAAPABQAAAADAAQAAAAQABQAAAADAAQAAAARABQAAAADAAQAAAASABQAAAADAAQAAAATABQAAAADAAQAAAAUABQAAAADAAQAAAAVABQAAAADAAQAAAAWABQAAAADAAQAAAAXABQAAAADAAQAAAAbABQAAAADAAQAAAAcABQAAAADAAQAAAAdABQAAAADAAQAAAAeABQAAAADAAQAAAAfABQAAAADAAQAAAAgABQAAAADAAQAAAAHABUAAAAEAAUAAAAIABUAAAAEAAUAAAAJABUAAAAEAAUAAAAKABUAAAAEAAUAAAALABUAAAAEAAUAAAAMABUAAAAEAAUAAAANABUAAAAEAAUAAAAOABUAAAAEAAUAAAAPABUAAAAEAAUAAAAQABUAAAAEAAUAAAARABUAAAAEAAUAAAASABUAAAAEAAUAAAATABUAAAAEAAUAAAAUABUAAAAEAAUAAAAVABUAAAAEAAUAAAAWABUAAAAEAAUAAAAXABUAAAAEAAUAAAAYABUAAAAEAAUAAAAeABUAAAAEAAUAAAAfABUAAAAEAAUAAAAgABUAAAAEAAUAAAAdABUAAAAEAAUAAAAcABUAAAAEAAUAAAAbABUAAAAEAAUAAAAaABUAAAAEAAUAAAAZABUAAAAEAAUAAAAKABQAAAADAAQAAAALABQAAAADAAQAAAAYABQAAAADAAQAAAAZABQAAAADAAQAAAAaABQAAAADAAQAAAAhABQAAAAFAAQAAAAhABUAAAAGAAUAAAAGABQAAAABAAQAAAAGABUAAAAEAAUAAAA=")
