@@ -1,22 +1,23 @@
 [gd_scene format=3 uid="uid://b0eilhctvp3lb"]
 
 [ext_resource type="Script" uid="uid://beq3roboq5w8j" path="res://scenes/Bile.gd" id="1_2hls0"]
+[ext_resource type="Texture2D" uid="uid://7o8kd5j5uayb" path="res://assets/bile.png" id="2_kkwrb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2nuq"]
-size = Vector2(640, 80)
+size = Vector2(640, 394)
 
 [node name="Bile" type="Node2D" unique_id=395841072]
 script = ExtResource("1_2hls0")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=866095240]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=820298534]
-shape = SubResource("RectangleShape2D_u2nuq")
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=504132988]
+position = Vector2(6.000002, 159)
+scale = Vector2(2.1, 2.1)
+texture = ExtResource("2_kkwrb")
 
-[node name="ColorRect" type="ColorRect" parent="Area2D/CollisionShape2D" unique_id=1284017011]
-offset_left = -313.0
-offset_top = -39.0
-offset_right = 323.0
-offset_bottom = 40.0
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=820298534]
+position = Vector2(0, 157)
+shape = SubResource("RectangleShape2D_u2nuq")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
