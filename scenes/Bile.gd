@@ -1,6 +1,6 @@
 extends Node2D
 
-var speed: float = 5.0
+var speed: float = 20.0
 var direction: Vector2 = Vector2.UP
 
 var should_rise: bool = false
