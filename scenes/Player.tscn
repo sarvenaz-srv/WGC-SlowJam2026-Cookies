@@ -1,10 +1,17 @@
-[gd_scene format=3 uid="uid://bxplayer001"]
+[gd_scene format=3]
 
 [ext_resource type="Script" uid="uid://bg7wtc81e5xjm" path="res://scripts/Player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://mid0f1nqamd1" path="res://assets/solo- biome 1 lixinho right.png" id="2_v6fml"]
+[ext_resource type="Texture2D" uid="uid://cxjcic2kflgpr" path="res://assets/solo- biome 1 lixinho left.png" id="3_left1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_player"]
+radius = 12.0
+height = 36.0
 
 [node name="Player" type="CharacterBody2D" unique_id=493941434]
 script = ExtResource("1")
+right_texture = ExtResource("2_v6fml")
+left_texture = ExtResource("3_left1")
 
 [node name="GrappleLine" type="Line2D" parent="." unique_id=765451302]
 width = 2.0
@@ -15,10 +22,16 @@ zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1656613350]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1656613350]
 position = Vector2(2, -2)
-polygon = PackedVector2Array(10, -19, -2, -11, -5, -6, -16, -1, -14, 10, -13, 17, -1, 18, 8, 5, 12, -3)
+shape = SubResource("CapsuleShape2D_player")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=292669339]
 position = Vector2(2, -2)
 texture = ExtResource("2_v6fml")
+
+[node name="CarapaceLight" type="PointLight2D" parent="." unique_id=838201477]
+visible = false
+color = Color(1, 0.98, 0.9, 1)
+energy = 0.6
+blend_mode = 1
