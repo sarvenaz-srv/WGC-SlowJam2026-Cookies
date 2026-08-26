@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://beq3roboq5w8j" path="res://scenes/Bile.gd" id="1_2hls0"]
 [ext_resource type="Texture2D" uid="uid://7o8kd5j5uayb" path="res://assets/bile.png" id="2_kkwrb"]
+[ext_resource type="AudioStream" uid="uid://c82btalda4i41" path="res://assets/SOUND/FX/bile rising.wav" id="3_onxs6"]
+[ext_resource type="AudioStream" uid="uid://c2ia5juhkmqtx" path="res://assets/SOUND/FX/killed by BILE.wav" id="4_m010r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u2nuq"]
 size = Vector2(640, 394)
@@ -19,5 +21,12 @@ texture = ExtResource("2_kkwrb")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=820298534]
 position = Vector2(0, 157)
 shape = SubResource("RectangleShape2D_u2nuq")
+
+[node name="BileRisingAudioStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=205552753]
+stream = ExtResource("3_onxs6")
+
+[node name="BileKilledPlayerAudioStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=2011443649]
+process_mode = 3
+stream = ExtResource("4_m010r")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
