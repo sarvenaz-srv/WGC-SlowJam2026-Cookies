@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://codpuxg2tsc3a"]
+
+[ext_resource type="Script" uid="uid://b436urady2ryu" path="res://scenes/npc.gd" id="1_mhefn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a1hev"]
+size = Vector2(175.5, 197.75)
+
+[node name="Npc" type="Node2D" unique_id=1658930820]
+script = ExtResource("1_mhefn")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1251313153]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=862127260]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=144946518]
+position = Vector2(-12, -22)
+shape = SubResource("RectangleShape2D_a1hev")

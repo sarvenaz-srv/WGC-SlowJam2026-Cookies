@@ -22,6 +22,7 @@ signal carapace_received
 @onready var line: Line2D = $GrappleLine
 @onready var sprite = $Sprite2D
 @onready var carapace_light: PointLight2D = $CarapaceLight
+@onready var jumpAudioPlayer = $JumpStreamAudioPlayer
 
 ## Radius (in pixels) of the soft glow that appears around the player once
 ## the carapace is equipped.
@@ -58,6 +59,7 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 		if Input.is_action_just_pressed("jump") and is_on_floor():
+			jumpAudioPlayer.play()
 			velocity.y = JUMP_VELOCITY
 
 	move_and_slide()
@@ -104,12 +106,11 @@ func _setup_carapace_light() -> void:
 
 ## Called by BileActivateZone (or any NPC) once the player accepts the
 ## carapace. Swaps in the new left/right art and transforms the player.
-func apply_carapace(new_right_texture: Texture2D, new_left_texture: Texture2D) -> void:
+func apply_gift(new_right_texture: Texture2D, new_left_texture: Texture2D) -> void:
 	has_carapace = true
 	right_texture = new_right_texture
 	left_texture = new_left_texture
 	# The NPC hands it over facing left, so show that pose immediately.
-	facing_left = true
 	_update_sprite_texture()
 	if carapace_light:
 		carapace_light.visible = true

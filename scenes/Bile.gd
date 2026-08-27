@@ -9,8 +9,9 @@ var direction: Vector2 = Vector2.UP
 var should_rise: bool = false
 
 func start_rising() -> void:
-	should_rise = true
-	risingAudioPlayer.play()
+	if should_rise == false:
+		should_rise = true
+		risingAudioPlayer.play()
 
 func _process(delta: float) -> void:
 	if should_rise:

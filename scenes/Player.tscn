@@ -1,8 +1,9 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cwolybh281kmh"]
 
 [ext_resource type="Script" uid="uid://bg7wtc81e5xjm" path="res://scripts/Player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://mid0f1nqamd1" path="res://assets/solo- biome 1 lixinho right.png" id="2_v6fml"]
 [ext_resource type="Texture2D" uid="uid://cxjcic2kflgpr" path="res://assets/solo- biome 1 lixinho left.png" id="3_left1"]
+[ext_resource type="AudioStream" uid="uid://86xf2kqs6t80" path="res://assets/SOUND/FX/JUMP.wav" id="4_mdl7e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_player"]
 radius = 12.0
@@ -35,3 +36,6 @@ visible = false
 color = Color(1, 0.98, 0.9, 1)
 energy = 0.6
 blend_mode = 1
+
+[node name="JumpStreamAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=2113746054]
+stream = ExtResource("4_mdl7e")
