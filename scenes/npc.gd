@@ -2,6 +2,10 @@ extends Node2D
 
 @onready var area = $Area2D
 
+@export var biome_bg_music: AudioStream
+@export var music_player: AudioStreamPlayer2D
+@export var dialogue_player: AudioStreamPlayer2D
+
 @export var sprite_texture: Texture2D
 @export var gift_icon: Texture2D
 @export var player_new_right_texture: Texture2D
@@ -40,6 +44,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if player_in_zone == null or gift_given:
 		return
+	if not dialogue_player.is_playing() and not gift_given:
+		dialogue_player.play()
+	music_player.stream = biome_bg_music
+	music_player.play()
 	if Input.is_action_just_pressed("interact"):
 		_give_gift(player_in_zone)
 	
