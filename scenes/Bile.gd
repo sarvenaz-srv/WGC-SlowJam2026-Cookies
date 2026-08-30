@@ -13,6 +13,11 @@ func start_rising() -> void:
 		should_rise = true
 		risingAudioPlayer.play()
 
+func stop_rising() -> void:
+	if should_rise:
+		should_rise = false
+		risingAudioPlayer.stop()
+
 func _process(delta: float) -> void:
 	if should_rise:
 		position += direction * speed * delta
