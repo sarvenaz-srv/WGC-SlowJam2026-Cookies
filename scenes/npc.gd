@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var area = $Area2D
-
+@onready var upgradeAudioPlayer = $UpgradeAudioPlayer
 @export var biome_bg_music: AudioStream
 @export var music_player: AudioStreamPlayer2D
 @export var dialogue_player: AudioStreamPlayer2D
@@ -61,7 +61,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if not gift_given:
 		player_in_zone = body
 		if prompt_label:
-			prompt_label.text = "Press A to accept the Gift"
+			prompt_label.text = "Press E to accept the Gift"
 		_set_prompt_visible(true)
 
 func _on_body_exited(body: Node2D) -> void:
@@ -73,6 +73,7 @@ func _on_body_exited(body: Node2D) -> void:
 func _give_gift(body: Node2D) -> void:
 	if not body.has_method("apply_gift"):
 		return
+	upgradeAudioPlayer.play()
 	body.apply_gift(player_new_right_texture, player_new_left_texture, ability_to_unlock)
 	gift_given = true
 	player_in_zone = null

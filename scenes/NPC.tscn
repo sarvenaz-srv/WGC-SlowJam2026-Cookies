@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://codpuxg2tsc3a"]
 
 [ext_resource type="Script" uid="uid://b436urady2ryu" path="res://scenes/npc.gd" id="1_mhefn"]
+[ext_resource type="AudioStream" uid="uid://cdi5kybtk4r6" path="res://assets/SOUND/FX/UPGRADE.wav" id="2_6xvi5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1hev"]
 size = Vector2(175.5, 197.75)
@@ -15,3 +16,6 @@ script = ExtResource("1_mhefn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=144946518]
 position = Vector2(-12, -22)
 shape = SubResource("RectangleShape2D_a1hev")
+
+[node name="UpgradeAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1443876334]
+stream = ExtResource("2_6xvi5")
