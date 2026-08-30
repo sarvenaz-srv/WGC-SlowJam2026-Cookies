@@ -467,7 +467,7 @@ stretch_mode = 5
 
 [node name="PromptLabel" type="Label" parent="CarapacePrompt/PromptControl/HBox" unique_id=854052508]
 layout_mode = 2
-text = "Press A to accept the Carapace"
+text = "Press E to accept the Carapace"
 
 [node name="InitialMusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1098567614]
 stream = ExtResource("47_s3wmy")

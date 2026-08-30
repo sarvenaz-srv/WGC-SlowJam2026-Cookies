@@ -10,8 +10,8 @@ enum Ability {
 	SENSE
 }
 
-const SPEED := 130.0
-const DASH_SPEED := 160.0
+const SPEED := 160.0
+const DASH_SPEED := 200.0
 const JUMP_VELOCITY := -400.0
 const GRAVITY := 980.0
 const SENSE_MAX_DIST := 260.0
