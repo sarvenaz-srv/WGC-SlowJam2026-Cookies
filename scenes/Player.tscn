@@ -14,10 +14,6 @@ script = ExtResource("1")
 right_texture = ExtResource("2_v6fml")
 left_texture = ExtResource("3_left1")
 
-[node name="GrappleLine" type="Line2D" parent="." unique_id=765451302]
-width = 2.0
-default_color = Color(0.9, 0.9, 0.9, 0.9)
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=94446690]
 zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
