@@ -17,7 +17,9 @@ const JUMP_VELOCITY := -400.0
 const GRAVITY := 980.0
 const SENSE_MAX_DIST := 260.0
 const SENSE_MIN_DIST := 24.0
+const MAX_HEALTH := 3
 
+var health: int = MAX_HEALTH
 var has_carapace := false
 var can_dash := false
 var can_double_jump := false
@@ -29,7 +31,7 @@ var facing_left := false
 @onready var jumpAudioPlayer = $JumpStreamAudioPlayer
 @onready var doubleJumpAudioPlayer = $DoubleJumpStreamAudioPlayer
 @onready var dashAudioPlayer = $DashStreamAudioPlayer
-
+@onready var healthDisplay = $HealthDisplay
 ## Radius (in pixels) of the soft glow that appears around the player once
 ## the carapace is equipped.
 const CARAPACE_LIGHT_RADIUS := 20.0
@@ -46,8 +48,12 @@ var dash_time_left := 0.0
 @export var right_texture: Texture2D
 @export var left_texture: Texture2D
 
+signal health_changed(new_health: int)
+
 func _ready() -> void:
 	add_to_group("player")
+	health_changed.connect(healthDisplay.update_health)
+	healthDisplay.update_health(health)
 	if right_texture == null:
 		right_texture = sprite.texture
 	_update_sprite_texture()
@@ -109,6 +115,26 @@ func _update_sprite_texture() -> void:
 		return
 	sprite.texture = left_texture if facing_left else right_texture
 
+func apply_gift(new_right_texture: Texture2D, new_left_texture: Texture2D, ability_to_unlock: Ability) -> void:
+	right_texture = new_right_texture
+	left_texture = new_left_texture
+	# The NPC hands it over facing left, so show that pose immediately.
+	_update_sprite_texture()
+	
+func unlock_ability(ability: Ability) -> void:
+	if ability == Ability.LIGHT:
+		has_carapace = true
+		if carapace_light:
+			carapace_light.visible = true
+	elif ability == Ability.DOUBLE_JUMP:
+		can_double_jump = true
+		max_jumps = 2
+	elif ability == Ability.DASH:
+		can_dash = true
+	elif ability == Ability.SENSE:
+		can_sense = true
+
+
 ## Builds a soft radial-gradient texture at runtime (no external image
 ## needed) and sizes the PointLight2D so it only lights up a small radius
 ## around the player.
@@ -132,22 +158,14 @@ func _setup_carapace_light() -> void:
 	# radius on screen is CARAPACE_LIGHT_RADIUS pixels.
 	var scale := (CARAPACE_LIGHT_RADIUS * 2.0) / CARAPACE_LIGHT_TEXTURE_SIZE
 	carapace_light.texture_scale = scale
-
-func apply_gift(new_right_texture: Texture2D, new_left_texture: Texture2D, ability_to_unlock: Ability) -> void:
-	right_texture = new_right_texture
-	left_texture = new_left_texture
-	# The NPC hands it over facing left, so show that pose immediately.
-	_update_sprite_texture()
 	
-func unlock_ability(ability: Ability) -> void:
-	if ability == Ability.LIGHT:
-		has_carapace = true
-		if carapace_light:
-			carapace_light.visible = true
-	elif ability == Ability.DOUBLE_JUMP:
-		can_double_jump = true
-		max_jumps = 2
-	elif ability == Ability.DASH:
-		can_dash = true
-	elif ability == Ability.SENSE:
-		can_sense = true
+func take_damage(amount: int = 1) -> void:
+	health = max(health - amount, 0)
+	health_changed.emit(health)
+	if health <= 0:
+		GameOverMenu.show_game_over()
+
+
+func heal(amount: int = 1) -> void:
+	health = min(health + amount, MAX_HEALTH)
+	health_changed.emit(health)
