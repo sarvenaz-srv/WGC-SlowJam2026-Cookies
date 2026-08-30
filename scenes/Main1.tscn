@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://cggobflhtq0g1" path="res://assets/solo- biome 1 npc.png" id="20_1nqs0"]
 [ext_resource type="PackedScene" uid="uid://codpuxg2tsc3a" path="res://scenes/NPC.tscn" id="20_e2s0e"]
 [ext_resource type="Script" uid="uid://c6fmw0k1wxs5h" path="res://scripts/BileActivateZone.gd" id="21_bilezone"]
+[ext_resource type="Script" path="res://scripts/EndSequence.gd" id="50_endseq"]
 [ext_resource type="Texture2D" uid="uid://c4nri3uxhshxv" path="res://assets/solo- carapace.png" id="22_carapace"]
 [ext_resource type="Texture2D" uid="uid://70ijos184n3" path="res://assets/solo- biome 2 lixinho right.png" id="23_b2right"]
 [ext_resource type="Texture2D" uid="uid://dngjmkyjgccio" path="res://assets/solo- biome 2 lixinho left.png" id="24_b2left"]
@@ -282,6 +283,9 @@ pattern_4 = SubResource("TileMapPattern_e2s0e")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bilezone"]
 size = Vector2(64, 63)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_endtrigger"]
+size = Vector2(80, 40)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialoguebg"]
 bg_color = Color(0, 0, 0, 0.75)
 corner_radius_top_left = 6
@@ -438,6 +442,16 @@ bile_path = NodePath("../Bile")
 position = Vector2(-8, -18.5)
 shape = SubResource("RectangleShape2D_bilezone")
 
+[node name="EndTrigger" type="Area2D" parent="." unique_id=2100000001]
+position = Vector2(296, -1354)
+script = ExtResource("50_endseq")
+bile_path = NodePath("../Bile")
+title_screen_path = NodePath("../LixinhoTitleScreen")
+credits_control_path = NodePath("../CreditsLayer/CreditsControl")
+
+[node name="EndTriggerShape" type="CollisionShape2D" parent="EndTrigger" unique_id=2100000002]
+shape = SubResource("RectangleShape2D_endtrigger")
+
 [node name="CarapacePrompt" type="CanvasLayer" parent="." unique_id=836902201]
 
 [node name="PromptControl" type="Control" parent="CarapacePrompt" unique_id=828610150]
@@ -495,6 +509,48 @@ size_flags_vertical = 1
 text = "Press E to accept the Carapace"
 autowrap_mode = 3
 vertical_alignment = 1
+
+[node name="CreditsLayer" type="CanvasLayer" parent="." unique_id=2100000010]
+layer = 5
+
+[node name="CreditsControl" type="Control" parent="CreditsLayer" unique_id=2100000011]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CreditsBackground" type="ColorRect" parent="CreditsLayer/CreditsControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="CreditsLabel" type="Label" parent="CreditsLayer/CreditsControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -20.0
+offset_right = 160.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 18
+text = "Credits to Allison, Aurora, Sarv, Ali"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="InitialMusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1098567614]
 stream = ExtResource("47_s3wmy")
