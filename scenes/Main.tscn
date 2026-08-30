@@ -379,6 +379,7 @@ player_new_left_texture = ExtResource("27_v0vrg")
 prompt_control_path = NodePath("../CarapacePrompt/PromptControl")
 prompt_label_path = NodePath("../CarapacePrompt/PromptControl/HBox/PromptLabel")
 prompt_icon_path = NodePath("../CarapacePrompt/PromptControl/HBox/PromptIcon")
+ability_to_unlock = 1
 
 [node name="DialogueAudioPlayer" type="AudioStreamPlayer2D" parent="Npc2" unique_id=2007131317]
 stream = ExtResource("30_5grtr")
@@ -395,6 +396,7 @@ player_new_left_texture = ExtResource("31_cmqll")
 prompt_control_path = NodePath("../CarapacePrompt/PromptControl")
 prompt_label_path = NodePath("../CarapacePrompt/PromptControl/HBox/PromptLabel")
 prompt_icon_path = NodePath("../CarapacePrompt/PromptControl/HBox/PromptIcon")
+ability_to_unlock = 2
 
 [node name="DialogueAudioPlayer" type="AudioStreamPlayer2D" parent="Npc3" unique_id=2129665183]
 stream = ExtResource("35_vua0o")
@@ -411,6 +413,7 @@ player_new_left_texture = ExtResource("35_pdwbg")
 prompt_control_path = NodePath("../CarapacePrompt/PromptControl")
 prompt_label_path = NodePath("../CarapacePrompt/PromptControl/HBox/PromptLabel")
 prompt_icon_path = NodePath("../CarapacePrompt/PromptControl/HBox/PromptIcon")
+ability_to_unlock = 3
 
 [node name="DialogueAudioPlayer" type="AudioStreamPlayer2D" parent="Npc4" unique_id=1816326546]
 stream = ExtResource("40_t70y2")

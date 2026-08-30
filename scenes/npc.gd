@@ -13,6 +13,7 @@ extends Node2D
 @export var prompt_control_path: NodePath
 @export var prompt_label_path: NodePath
 @export var prompt_icon_path: NodePath
+@export var ability_to_unlock: Player.Ability
 
 var prompt_control: CanvasItem
 var prompt_label: Label
@@ -72,7 +73,7 @@ func _on_body_exited(body: Node2D) -> void:
 func _give_gift(body: Node2D) -> void:
 	if not body.has_method("apply_gift"):
 		return
-	body.apply_gift(player_new_right_texture, player_new_left_texture)
+	body.apply_gift(player_new_right_texture, player_new_left_texture, ability_to_unlock)
 	gift_given = true
 	player_in_zone = null
 	_set_prompt_visible(false)

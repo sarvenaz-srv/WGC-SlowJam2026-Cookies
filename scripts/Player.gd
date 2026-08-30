@@ -3,7 +3,15 @@ extends CharacterBody2D
 ## hook that lets you swing/pull yourself up the tower.
 class_name Player
 
-const SPEED := 160.0
+enum Ability {
+	LIGHT,
+	DOUBLE_JUMP,
+	DASH,
+	GRAPPLE_SENSE
+}
+
+const SPEED := 100.0
+const DASH_SPEED := 160.0
 const JUMP_VELOCITY := -400.0
 const GRAVITY := 980.0
 const GRAPPLE_MAX_DIST := 260.0
@@ -13,11 +21,11 @@ const GRAPPLE_MIN_DIST := 24.0
 var grappling := false
 var grapple_point: Vector2 = Vector2.ZERO
 
-## Set to true once the player has accepted the carapace from the first NPC.
 var has_carapace := false
+var can_dash := false
+var can_double_jump := false
+var can_grapple := false
 var facing_left := false
-
-signal carapace_received
 
 @onready var line: Line2D = $GrappleLine
 @onready var sprite = $Sprite2D
@@ -70,6 +78,8 @@ func _physics_process(delta: float) -> void:
 		line.clear_points()
 
 func _handle_grapple_input() -> void:
+	if not can_grapple:
+		return
 	if Input.is_action_just_pressed("grapple"):
 		_try_fire_grapple()
 	elif Input.is_action_just_released("grapple"):
@@ -104,17 +114,24 @@ func _setup_carapace_light() -> void:
 	var scale := (CARAPACE_LIGHT_RADIUS * 2.0) / CARAPACE_LIGHT_TEXTURE_SIZE
 	carapace_light.texture_scale = scale
 
-## Called by BileActivateZone (or any NPC) once the player accepts the
-## carapace. Swaps in the new left/right art and transforms the player.
-func apply_gift(new_right_texture: Texture2D, new_left_texture: Texture2D) -> void:
-	has_carapace = true
+func apply_gift(new_right_texture: Texture2D, new_left_texture: Texture2D, ability_to_unlock: Ability) -> void:
 	right_texture = new_right_texture
 	left_texture = new_left_texture
 	# The NPC hands it over facing left, so show that pose immediately.
 	_update_sprite_texture()
-	if carapace_light:
-		carapace_light.visible = true
-	carapace_received.emit()
+	
+func unlock_ability(ability: Ability) -> void:
+	if ability == Ability.LIGHT:
+		has_carapace = true
+		if carapace_light:
+			carapace_light.visible = true
+	elif ability == Ability.DOUBLE_JUMP:
+		can_double_jump = true
+	elif ability == Ability.DASH:
+		can_dash = true
+	elif ability == Ability.GRAPPLE_SENSE:
+		can_grapple = true
+
 
 func _try_fire_grapple() -> void:
 	var space_state := get_world_2d().direct_space_state
