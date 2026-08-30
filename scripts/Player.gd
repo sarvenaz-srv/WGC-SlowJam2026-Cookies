@@ -11,7 +11,8 @@ enum Ability {
 }
 
 const SPEED := 160.0
-const DASH_SPEED := 200.0
+const DASH_SPEED := 600.0
+const DASH_DURATION := 0.15
 const JUMP_VELOCITY := -400.0
 const GRAVITY := 980.0
 const SENSE_MAX_DIST := 260.0
@@ -20,17 +21,25 @@ const SENSE_MIN_DIST := 24.0
 var has_carapace := false
 var can_dash := false
 var can_double_jump := false
-var can_grapple := false
+var can_sense := false
 var facing_left := false
 
 @onready var sprite = $Sprite2D
 @onready var carapace_light: PointLight2D = $CarapaceLight
 @onready var jumpAudioPlayer = $JumpStreamAudioPlayer
+@onready var doubleJumpAudioPlayer = $DoubleJumpStreamAudioPlayer
+@onready var dashAudioPlayer = $DashStreamAudioPlayer
 
 ## Radius (in pixels) of the soft glow that appears around the player once
 ## the carapace is equipped.
 const CARAPACE_LIGHT_RADIUS := 20.0
 const CARAPACE_LIGHT_TEXTURE_SIZE := 128
+
+var jumps_used := 0
+var max_jumps := 1
+
+var dashing := false
+var dash_time_left := 0.0
 
 ## Textures used for the player's current "skin". Swapped out (instead of
 ## just flipping) so we can use the dedicated left/right art per biome.
@@ -45,6 +54,17 @@ func _ready() -> void:
 	_setup_carapace_light()
 
 func _physics_process(delta: float) -> void:
+	if can_dash and Input.is_action_just_pressed("dash"):
+		_start_dash()
+	if dashing:
+		_process_dash(delta)
+	else:
+		_process_normal_movement(delta)
+	move_and_slide()
+
+func _process_normal_movement(delta: float) -> void:
+	if is_on_floor():
+		jumps_used = 0
 	velocity.y += GRAVITY * delta
 
 	var direction := Input.get_axis("move_left", "move_right")
@@ -55,12 +75,35 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		jumpAudioPlayer.play()
-		velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("jump"):
+		_try_jump()
 
-	move_and_slide()
 	
+func _try_jump() -> void:
+	if is_on_floor():
+		jumpAudioPlayer.play()
+		_jump()
+	elif can_double_jump and jumps_used < 2:
+		doubleJumpAudioPlayer.play()
+		_jump()
+		
+func _jump() -> void:
+	velocity.y = JUMP_VELOCITY
+	jumps_used += 1
+
+func _start_dash() -> void:
+	dashing = true
+	dash_time_left = DASH_DURATION
+	var dash_direction := -1.0 if facing_left else 1.0
+	velocity.x = dash_direction * DASH_SPEED
+	velocity.y = 0
+	dashAudioPlayer.play()
+
+func _process_dash(delta: float) -> void:
+	dash_time_left -= delta
+	if dash_time_left <= 0:
+		dashing = false
+
 func _update_sprite_texture() -> void:
 	if sprite == null:
 		return
@@ -103,7 +146,8 @@ func unlock_ability(ability: Ability) -> void:
 			carapace_light.visible = true
 	elif ability == Ability.DOUBLE_JUMP:
 		can_double_jump = true
+		max_jumps = 2
 	elif ability == Ability.DASH:
 		can_dash = true
 	elif ability == Ability.SENSE:
-		can_grapple = true
+		can_sense = true
