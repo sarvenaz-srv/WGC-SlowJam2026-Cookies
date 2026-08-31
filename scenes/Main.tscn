@@ -45,13 +45,13 @@
 [ext_resource type="Texture2D" uid="uid://b1ewfharmhro" path="res://assets/solo- biome 4 lixinho left.png" id="31_cmqll"]
 [ext_resource type="AudioStream" uid="uid://drc7nyusoguo5" path="res://assets/SOUND/FX/LIXINHO2_MSTR48k.wav" id="32_s3wmy"]
 [ext_resource type="Texture2D" uid="uid://degqqyr25mwsn" path="res://assets/solo- sensor.png" id="33_8cp6k"]
-[ext_resource type="Texture2D" uid="uid://umprgw0sifwr" path="res://assets/solo- biome 5 lixinho dash right.png" id="34_8b871"]
-[ext_resource type="Texture2D" uid="uid://br30b6ap23mnp" path="res://assets/solo- biome 5 lixinho dash left.png" id="35_pdwbg"]
 [ext_resource type="AudioStream" uid="uid://d2uhrnpivjnra" path="res://assets/SOUND/FX/BUDDY3.wav" id="35_vua0o"]
 [ext_resource type="AudioStream" uid="uid://c3cvvw3w68255" path="res://assets/SOUND/FX/LIXINHO3_MSTR48k.wav" id="38_gdcyb"]
 [ext_resource type="AudioStream" uid="uid://ugn10pbptwa1" path="res://assets/SOUND/FX/BUDDY4.wav" id="40_t70y2"]
 [ext_resource type="AudioStream" uid="uid://c2io8y51mo1cq" path="res://assets/SOUND/FX/LIXINHO4_MSTR48k.wav" id="44_oa6sj"]
+[ext_resource type="Texture2D" uid="uid://4a3v51sn5s68" path="res://assets/solo- biome 5 lixinho right.png" id="47_dyyw8"]
 [ext_resource type="AudioStream" uid="uid://ciqd1cg23p26j" path="res://assets/SOUND/FX/LIXINHO0_MSTR48k.wav" id="47_s3wmy"]
+[ext_resource type="Texture2D" uid="uid://dr2158bkdbj4p" path="res://assets/solo- biome 5 lixinho left.png" id="48_gjpm3"]
 [ext_resource type="PackedScene" uid="uid://bxxovg877cp8i" path="res://scenes/Food.tscn" id="53_dyyw8"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_nfivy"]
@@ -500,8 +500,8 @@ dialogue_player = NodePath("DialogueAudioPlayer")
 dialogue_text = "take this Heart of the Ocean and use it to sense platforms that aren’t big enough for both of us. My heart will go on Jack… I mean Lixinho…"
 sprite_texture = ExtResource("16_fs0b5")
 gift_icon = ExtResource("33_8cp6k")
-player_new_right_texture = ExtResource("34_8b871")
-player_new_left_texture = ExtResource("35_pdwbg")
+player_new_right_texture = ExtResource("47_dyyw8")
+player_new_left_texture = ExtResource("48_gjpm3")
 prompt_control_path = NodePath("../CarapacePrompt/PromptControl")
 prompt_label_path = NodePath("../CarapacePrompt/PromptControl/HBox/PromptLabel")
 prompt_icon_path = NodePath("../CarapacePrompt/PromptControl/HBox/PromptIcon")
