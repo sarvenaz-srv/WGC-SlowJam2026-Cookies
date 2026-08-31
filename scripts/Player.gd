@@ -35,6 +35,7 @@ var can_take_damage := true
 @onready var dashAudioPlayer = $DashStreamAudioPlayer
 @onready var healthDisplay = $HealthDisplay
 @onready var damageAudioPlayer = $DamageStreamAudioPlayer
+@onready var healAudioPlayer = $HealStreamAudioPlayer
 ## Radius (in pixels) of the soft glow that appears around the player once
 ## the carapace is equipped.
 const CARAPACE_LIGHT_RADIUS := 20.0
@@ -183,6 +184,7 @@ func take_damage(amount: int = 1) -> void:
 
 
 func heal(amount: int = 1) -> void:
+	healAudioPlayer.play()
 	health = min(health + amount, MAX_HEALTH)
 	health_changed.emit(health)
 

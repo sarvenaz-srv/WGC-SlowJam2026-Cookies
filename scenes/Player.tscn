@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dddvmbg4nda2v" path="res://assets/SOUND/FX/OUCH.wav" id="7_o4126"]
 [ext_resource type="Texture2D" uid="uid://bd3tftqlwa7qi" path="res://assets/solo- x1 food idol.png" id="8_d3wef"]
 [ext_resource type="Texture2D" uid="uid://cxt3r0f3ae1bn" path="res://assets/solo- food idol.png" id="8_khinc"]
+[ext_resource type="AudioStream" uid="uid://n3gkese7jwko" path="res://assets/SOUND/FX/item pickup.wav" id="8_lkdrv"]
 [ext_resource type="Texture2D" uid="uid://ofmuyp3sq4j6" path="res://assets/solo- x2 idols.png" id="9_o4126"]
 [ext_resource type="Texture2D" uid="uid://cg6s6oyn5uhbh" path="res://assets/solo- x3 idols.png" id="10_lkdrv"]
 
@@ -52,6 +53,9 @@ stream = ExtResource("5_qu4a1")
 
 [node name="DamageStreamAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=726521862]
 stream = ExtResource("7_o4126")
+
+[node name="HealStreamAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=538159452]
+stream = ExtResource("8_lkdrv")
 
 [node name="HealthDisplay" type="Node2D" parent="." unique_id=373522109]
 position = Vector2(0, -27)
