@@ -16,14 +16,6 @@ const PHASE_COLORS := {
 
 var current_phase: int = Phase.RED
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("cycle_color"):
-		cycle()
-
-func cycle() -> void:
-	current_phase = (current_phase + 1) % Phase.size()
-	color_changed.emit(current_phase)
-
 func set_phase(phase: int) -> void:
 	if phase == current_phase:
 		return
