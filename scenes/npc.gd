@@ -5,6 +5,7 @@ extends Node2D
 @export var biome_bg_music: AudioStream
 @export var music_player: AudioStreamPlayer2D
 @export var dialogue_player: AudioStreamPlayer2D
+@export_multiline var dialogue_text: String
 
 @export var sprite_texture: Texture2D
 @export var gift_icon: Texture2D
@@ -14,6 +15,8 @@ extends Node2D
 @export var prompt_label_path: NodePath
 @export var prompt_icon_path: NodePath
 @export var ability_to_unlock: Player.Ability
+
+@onready var dialogue_label: Label = $DialogueLabel
 
 var prompt_control: CanvasItem
 var prompt_label: Label
@@ -29,7 +32,8 @@ func _ready() -> void:
 		$Sprite2D.texture = sprite_texture
 	area.body_entered.connect(_on_body_entered)
 	area.body_exited.connect(_on_body_exited)
-	
+	dialogue_label.text = dialogue_text
+	dialogue_label.visible = false
 	if prompt_control_path != NodePath(""):
 		prompt_control = get_node_or_null(prompt_control_path)
 	if prompt_label_path != NodePath(""):
@@ -59,6 +63,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 	# Let the NPC offer the carapace, if it hasn't been given yet.
 	if not gift_given:
+		dialogue_label.visible = true
 		player_in_zone = body
 		if prompt_label:
 			prompt_label.text = "Press E to accept the Gift"
@@ -67,6 +72,7 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	if body == player_in_zone:
 		player_in_zone = null
+		dialogue_label.visible = false
 		if not gift_given:
 			_set_prompt_visible(false)
 

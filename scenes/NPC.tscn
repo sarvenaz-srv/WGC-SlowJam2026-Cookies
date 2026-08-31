@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://cdi5kybtk4r6" path="res://assets/SOUND/FX/UPGRADE.wav" id="2_6xvi5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a1hev"]
-size = Vector2(175.5, 197.75)
+size = Vector2(53, 33)
 
 [node name="Npc" type="Node2D" unique_id=1658930820]
 script = ExtResource("1_mhefn")
@@ -14,8 +14,17 @@ script = ExtResource("1_mhefn")
 [node name="Area2D" type="Area2D" parent="." unique_id=862127260]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=144946518]
-position = Vector2(-12, -22)
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_a1hev")
 
 [node name="UpgradeAudioPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1443876334]
 stream = ExtResource("2_6xvi5")
+
+[node name="DialogueLabel" type="Label" parent="." unique_id=570220522]
+offset_left = -70.0
+offset_top = -70.0
+offset_right = 110.0
+offset_bottom = 10.0
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+autowrap_mode = 3
