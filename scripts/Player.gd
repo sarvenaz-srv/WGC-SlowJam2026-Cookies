@@ -18,6 +18,7 @@ const GRAVITY := 980.0
 const SENSE_MAX_DIST := 260.0
 const SENSE_MIN_DIST := 24.0
 const MAX_HEALTH := 3
+const DAMAGE_COOLDOWN := 3
 
 var health: int = MAX_HEALTH
 var has_carapace := false
@@ -25,6 +26,7 @@ var can_dash := false
 var can_double_jump := false
 var can_sense := false
 var facing_left := false
+var can_take_damage := true
 
 @onready var sprite = $Sprite2D
 @onready var carapace_light: PointLight2D = $CarapaceLight
@@ -32,6 +34,7 @@ var facing_left := false
 @onready var doubleJumpAudioPlayer = $DoubleJumpStreamAudioPlayer
 @onready var dashAudioPlayer = $DashStreamAudioPlayer
 @onready var healthDisplay = $HealthDisplay
+@onready var damageAudioPlayer = $DamageStreamAudioPlayer
 ## Radius (in pixels) of the soft glow that appears around the player once
 ## the carapace is equipped.
 const CARAPACE_LIGHT_RADIUS := 20.0
@@ -47,6 +50,8 @@ var dash_time_left := 0.0
 ## just flipping) so we can use the dedicated left/right art per biome.
 @export var right_texture: Texture2D
 @export var left_texture: Texture2D
+
+@export var hazard_layer: TileMapLayer
 
 signal health_changed(new_health: int)
 
@@ -67,6 +72,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		_process_normal_movement(delta)
 	move_and_slide()
+	_check_hazard_collision()
 
 func _process_normal_movement(delta: float) -> void:
 	if is_on_floor():
@@ -119,6 +125,7 @@ func apply_gift(new_right_texture: Texture2D, new_left_texture: Texture2D, abili
 	right_texture = new_right_texture
 	left_texture = new_left_texture
 	# The NPC hands it over facing left, so show that pose immediately.
+	unlock_ability(ability_to_unlock)
 	_update_sprite_texture()
 	
 func unlock_ability(ability: Ability) -> void:
@@ -160,12 +167,29 @@ func _setup_carapace_light() -> void:
 	carapace_light.texture_scale = scale
 	
 func take_damage(amount: int = 1) -> void:
+	if not can_take_damage:
+		return
+
+	can_take_damage = false
+
 	health = max(health - amount, 0)
 	health_changed.emit(health)
+	damageAudioPlayer.play()
 	if health <= 0:
 		GameOverMenu.show_game_over()
+	
+	await get_tree().create_timer(DAMAGE_COOLDOWN).timeout
+	can_take_damage = true	
 
 
 func heal(amount: int = 1) -> void:
 	health = min(health + amount, MAX_HEALTH)
 	health_changed.emit(health)
+
+func _check_hazard_collision() -> void:
+	for i in get_slide_collision_count():
+		var collision := get_slide_collision(i)
+		var collider := collision.get_collider()
+		if collider == hazard_layer:
+			take_damage(1)
+			return

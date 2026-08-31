@@ -14,7 +14,7 @@ func update_health(health: int) -> void:
 			multiplier.visible = true
 			multiplier.texture = x2_texture
 		1:
-			multiplier.visible = false
+			multiplier.visible = true
 			multiplier.texture = x1_texture
 		0:
 			multiplier.visible = false

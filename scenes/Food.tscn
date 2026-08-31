@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bxxovg877cp8i"]
+
+[ext_resource type="Script" uid="uid://d2qhu2csfg17x" path="res://scripts/food.gd" id="1_oug6s"]
+[ext_resource type="Texture2D" uid="uid://dkt51rt2lklwe" path="res://assets/solo- food collectible.png" id="2_2jwtx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_au3lq"]
+
+[node name="Food" type="Area2D" unique_id=1623293516]
+script = ExtResource("1_oug6s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=793188300]
+texture = ExtResource("2_2jwtx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=729122921]
+shape = SubResource("CircleShape2D_au3lq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
