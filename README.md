@@ -1,6 +1,6 @@
 # Lixinho
 
-**Lixinho** is a 2D platformer developed in **Godot** for the **Winnipeg
+[**Lixinho**](https://programminglounge.itch.io/lixinho) is a 2D platformer developed in **Godot** for the **Winnipeg
 Game Collective's 2026 Slow Jam**.
 
 ## About the Game
